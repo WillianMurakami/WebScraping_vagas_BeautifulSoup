@@ -1,6 +1,6 @@
 streamlit
 pandas
 requests
-spacy
+spacy>=3.0.0
 plotly
 numpy
