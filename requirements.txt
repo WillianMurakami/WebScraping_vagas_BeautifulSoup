@@ -1,6 +1,8 @@
 streamlit
 pandas
 requests
-spacy>=3.0.0
+spacy
 plotly
 numpy
+# Dependência para usar o downloader de modelos do spaCy
+spacy[pt]
