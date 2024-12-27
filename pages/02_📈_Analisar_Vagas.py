@@ -5,6 +5,18 @@ from collections import Counter
 import plotly.express as px
 from datetime import datetime
 import numpy as np
+import os
+import spacy
+
+# Verifica se o modelo de linguagem está disponível, faz o download se necessário
+if not spacy.util.is_package("pt_core_news_sm"):
+    os.system("python -m spacy download pt_core_news_sm")
+
+# Tentativa de carregar o modelo, captura erros se houver
+try:
+    nlp = spacy.load("pt_core_news_sm")
+except OSError:
+    raise RuntimeError("O modelo 'pt_core_news_sm' não está disponível. Verifique a instalação do modelo.")
 
 # Carregar o modelo de idioma português do spaCy
 nlp = spacy.load("pt_core_news_sm")
