@@ -7,13 +7,13 @@ import numpy as np
 import os
 
 # Define o caminho para o modelo local do spaCy
-model_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "models", "pt_core_news_sm")
+model_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "models", "pt_core_news_sm")
 
-# Tenta carregar o modelo de linguagem do caminho local, gera erro se não estiver disponível
+# Tenta carregar o modelo de linguagem do caminho local
 try:
     nlp = spacy.load(model_path)
-except OSError:
-    raise RuntimeError("O modelo 'pt_core_news_sm' não está disponível no diretório local. Verifique a instalação do modelo.")
+except OSError as e:
+    raise RuntimeError(f"Erro ao carregar o modelo local 'pt_core_news_sm': {e}")
 
 # Conjunto de stopwords específicas para cada categoria
 COMMON_STOPWORDS = {
