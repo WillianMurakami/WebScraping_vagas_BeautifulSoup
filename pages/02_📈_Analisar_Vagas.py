@@ -3,25 +3,19 @@ import pandas as pd
 import spacy
 from collections import Counter
 import plotly.express as px
-from datetime import datetime
 import numpy as np
 import os
-import spacy
 
-# Verifica se o modelo de linguagem está disponível, faz o download se necessário
-if not spacy.util.is_package("pt_core_news_sm"):
-    os.system("python -m spacy download pt_core_news_sm")
+# Define o caminho para o modelo local do spaCy
+model_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "models", "pt_core_news_sm")
 
-# Tentativa de carregar o modelo, captura erros se houver
+# Tenta carregar o modelo de linguagem do caminho local, gera erro se não estiver disponível
 try:
-    nlp = spacy.load("pt_core_news_sm")
+    nlp = spacy.load(model_path)
 except OSError:
-    raise RuntimeError("O modelo 'pt_core_news_sm' não está disponível. Verifique a instalação do modelo.")
+    raise RuntimeError("O modelo 'pt_core_news_sm' não está disponível no diretório local. Verifique a instalação do modelo.")
 
-# Carregar o modelo de idioma português do spaCy
-nlp = spacy.load("pt_core_news_sm")
-
-# Stopwords específicas para cada categoria
+# Conjunto de stopwords específicas para cada categoria
 COMMON_STOPWORDS = {
     "domínio", "experiência", "conhecimento", "sólido", "avançado", "familiaridade", "técnico", "desejável",
     "analítico", "proficiente", "proficiência", "detalhado", "essencial", "importante", "capacidade", "nível",
@@ -67,13 +61,13 @@ def calculate_days_between(dates1, dates2):
     days = [(d2 - d1).days if pd.notnull(d1) and pd.notnull(d2) else np.nan for d1, d2 in zip(dates1, dates2)]
     return days
 
-# Verificar se os dados do scraping estão presentes
+# Verifica se os dados do scraping estão presentes
 if 'job_data' not in st.session_state or st.session_state.job_data.empty:
     st.warning("Nenhum dado de vaga encontrado. Por favor, faça a busca de vagas antes de acessar a análise.")
 else:
     df_vagas = st.session_state.job_data
 
-    # Ajustar os dados de data
+    # Ajusta os dados de data
     df_vagas['Data de Publicação'] = pd.to_datetime(df_vagas['publishedDate'].str.split('T').str[0], errors='coerce')
     if 'applicationDeadline' in df_vagas.columns:
         df_vagas['Data de Candidatura'] = pd.to_datetime(df_vagas['applicationDeadline'].str.split('T').str[0], errors='coerce')
@@ -111,7 +105,7 @@ Neste painel você encontrará informações para facilitar sua análise e compr
             st.write(f"A única data disponível é {data_min}.")
             selected_date = (data_min, data_max)
 
-    # Converter datas selecionadas para datetime64[ns] para compatibilidade com pandas
+    # Converte datas selecionadas para datetime64[ns] para compatibilidade com pandas
     selected_start = pd.to_datetime(selected_date[0])
     selected_end = pd.to_datetime(selected_date[1])
 
@@ -143,7 +137,7 @@ Neste painel você encontrará informações para facilitar sua análise e compr
         sunburst_data['Estado'] = sunburst_data.apply(lambda row: 'Remoto' if row['isRemoteWork'] else row['state'], axis=1)
         sunburst_data['Cidade'] = sunburst_data.apply(lambda row: 'Remoto' if row['isRemoteWork'] else row['city'], axis=1)
         
-        # Conte o número de vagas por Estado e Cidade
+        # Conta o número de vagas por Estado e Cidade
         sunburst_count = sunburst_data.groupby(['Estado', 'Cidade']).size().reset_index(name='Número de Vagas')
 
         sunburst_fig = px.sunburst(
