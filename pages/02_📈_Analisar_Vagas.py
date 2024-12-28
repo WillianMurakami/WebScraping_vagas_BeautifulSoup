@@ -18,7 +18,7 @@ STOPWORDS = {
     "demandas", "crescimento", "ferramentas", "acesso", "plano", "profissionais", "relacionados", "como", "nossa", "pessoas", "pessoa", "suas", "seus",
     "seu", "sua", "isso", "essa", "esse", "essas", "esses", "nessa", "nesse", "nesses", "nessas", "forma", "plano", "saúde", "diversas", "formação",
     "junto", "pode", "através", "somos", "quando", "quanto", "temos", "velha", "buscamos", "conforme", "está", "entre", "conhecimentos", "ensino",
-    "venha", "seja", "nossas", "grupo",  
+    "venha", "seja", "nossas", "grupo", "melhor", "dentro", "além", "outras", "diferentes", "diferente", "incluindo"
 
 }
 
