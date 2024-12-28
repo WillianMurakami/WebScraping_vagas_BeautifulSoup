@@ -135,3 +135,11 @@ else:
             title="Principais Características Requeridas"
         )
         st.plotly_chart(fig_treemap)
+
+        # Configuração da barra lateral
+st.sidebar.markdown(
+    """
+    Projeto desenvolvido por [Willian Murakami](https://www.linkedin.com/in/willian-murakami/)
+    Para mais projetos, [clique aqui](https://share.streamlit.io/user/willianmurakami).
+    """
+)

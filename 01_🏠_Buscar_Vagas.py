@@ -69,6 +69,6 @@ else:
 st.sidebar.markdown(
     """
     Projeto desenvolvido por [Willian Murakami](https://www.linkedin.com/in/willian-murakami/)
-    Para mais projetos, [clique aqui](https://github.com/WillianMurakami).
+    Para mais projetos, [clique aqui](https://share.streamlit.io/user/willianmurakami).
     """
 )
