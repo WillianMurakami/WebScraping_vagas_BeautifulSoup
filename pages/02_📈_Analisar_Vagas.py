@@ -6,6 +6,14 @@ import plotly.express as px
 import numpy as np
 import os
 
+# Verifica se o modelo está instalado, caso contrário, instala-o
+try:
+    # Tenta carregar o modelo do caminho padrão do spaCy
+    nlp = spacy.load("pt_core_news_sm")
+except OSError:
+    # Se falhar, baixa e instala o modelo
+    os.system("python -m spacy download pt_core_news_sm")
+    nlp = spacy.load("pt_core_news_sm")
 
 # Define o caminho para o modelo local do spaCy
 model_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "models", "pt_core_news_sm")
