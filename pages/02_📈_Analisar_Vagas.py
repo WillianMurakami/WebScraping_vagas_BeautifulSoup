@@ -4,20 +4,20 @@ from collections import Counter
 import plotly.express as px
 
 # Stopwords customizadas
-STOPWORDS = {"vaga", "trabalho", "empresa", "projeto", "experiência", "responsável", 
-             "atividades", "requisitos", "realizar", "desejável", "mínimo", "área", 
-             "anos", "nível", "pessoa", "profissional", "processo", "relacionados", 
-             "informações", "outros", "possuir", "candidato", "atuar", "conhecimento"
-             "domínio", "experiência", "conhecimento", "sólido", "avançado", "familiaridade", "técnico", "desejável",
-             "analítico", "proficiente", "proficiência", "detalhado", "essencial", "importante", "capacidade", "nível",
-             "habilidade", "excelente", "fundamental", "competência", "área", "áreas", "vida", "saúde", "trabalho", "empresa",
-             "vale", "completo", "superior", "ambiente", "colaboradores", "colaborador", "atividades", "anos", "dia", "garantindo",
-             "será", "notas", "auxílio", "refeição", "busca", "vaga", "alimentação", "gente", "creche", "benefícios", "trabalhar",
-             "dias", "visando", "uso", "utilização", "solução", "implementação", "integração", "desenvolvimento", "serviço",
-             "sistema", "tecnologia", "plataforma", "software", "aplicativo", "programa", "cresol", "time", "ciências", "estamos", "garantir", "garantindo",
-             "profissional", "ações", "ação", "oportunidades", "oportunidade", "responsável", "para", "você", "mais", "fazer", "nossos", "nosso",
-             "rotinas", "rotina"
+STOPWORDS = {
+    "vaga", "trabalho", "empresa", "projeto", "experiência", "responsável", "atividades", "requisitos", "realizar", "desejável", "mínimo", "área",
+    "anos", "nível", "pessoa", "profissional", "processo", "relacionados", "informações", "outros", "possuir", "candidato", "atuar", "conhecimento",
+    "domínio", "sólido", "avançado", "familiaridade", "técnico", "analítico", "proficiente", "proficiência", "detalhado", "essencial", "importante",
+    "capacidade", "habilidade", "excelente", "fundamental", "competência", "área", "áreas", "vida", "saúde", "trabalho", "empresa", "vale", "completo",
+    "superior", "ambiente", "colaboradores", "colaborador", "anos", "dia", "garantindo", "será", "notas", "auxílio", "refeição", "busca", "alimentação",
+    "gente", "creche", "benefícios", "trabalhar", "dias", "visando", "uso", "utilização", "solução", "implementação", "integração", "desenvolvimento",
+    "serviço", "sistema", "tecnologia", "plataforma", "software", "aplicativo", "programa", "cresol", "time", "ciências", "estamos", "garantir", "ações",
+    "oportunidades", "responsável", "para", "você", "mais", "fazer", "nossos", "nosso", "rotinas", "rotina", "parte", "dados", "controle", "clientes",
+    "todos", "contratos", "administrativo", "equipe", "aqui", "sobre", "também", "apoio", "cada", "sempre", "setor", "indicadores", "bem-estar", 
+    "financeiro", "meio", "contas", "administrativas", "segurança", "valores", "todas", "formas",  "análise", "relacionadas",
+    "demandas", "crescimento", "ferramentas", "acesso", "plano", "profissionais", "relacionados"
 }
+
 
 # Função para extrair palavras-chave relevantes
 def extract_relevant_terms(text, stopwords):
