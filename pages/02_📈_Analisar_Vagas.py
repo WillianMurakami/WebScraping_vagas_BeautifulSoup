@@ -7,7 +7,17 @@ import plotly.express as px
 STOPWORDS = {"vaga", "trabalho", "empresa", "projeto", "experiência", "responsável", 
              "atividades", "requisitos", "realizar", "desejável", "mínimo", "área", 
              "anos", "nível", "pessoa", "profissional", "processo", "relacionados", 
-             "informações", "outros", "possuir", "candidato", "atuar", "conhecimento"}
+             "informações", "outros", "possuir", "candidato", "atuar", "conhecimento"
+             "domínio", "experiência", "conhecimento", "sólido", "avançado", "familiaridade", "técnico", "desejável",
+             "analítico", "proficiente", "proficiência", "detalhado", "essencial", "importante", "capacidade", "nível",
+             "habilidade", "excelente", "fundamental", "competência", "área", "áreas", "vida", "saúde", "trabalho", "empresa",
+             "vale", "completo", "superior", "ambiente", "colaboradores", "colaborador", "atividades", "anos", "dia", "garantindo",
+             "será", "notas", "auxílio", "refeição", "busca", "vaga", "alimentação", "gente", "creche", "benefícios", "trabalhar",
+             "dias", "visando", "uso", "utilização", "solução", "implementação", "integração", "desenvolvimento", "serviço",
+             "sistema", "tecnologia", "plataforma", "software", "aplicativo", "programa", "cresol", "time", "ciências", "estamos", "garantir", "garantindo",
+             "profissional", "ações", "ação", "oportunidades", "oportunidade", "responsável", "para", "você", "mais", "fazer", "nossos", "nosso",
+             "rotinas", "rotina"
+}
 
 # Função para extrair palavras-chave relevantes
 def extract_relevant_terms(text, stopwords):
