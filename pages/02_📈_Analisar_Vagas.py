@@ -15,7 +15,7 @@ STOPWORDS = {
     "oportunidades", "responsável", "para", "você", "mais", "fazer", "nossos", "nosso", "rotinas", "rotina", "parte", "dados", "controle", "clientes",
     "todos", "contratos", "administrativo", "equipe", "aqui", "sobre", "também", "apoio", "cada", "sempre", "setor", "indicadores", "bem-estar", 
     "financeiro", "meio", "contas", "administrativas", "segurança", "valores", "todas", "formas",  "análise", "relacionadas",
-    "demandas", "crescimento", "ferramentas", "acesso", "plano", "profissionais", "relacionados"
+    "demandas", "crescimento", "ferramentas", "acesso", "plano", "profissionais", "relacionados", "como"
 }
 
 
