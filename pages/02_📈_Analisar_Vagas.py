@@ -14,8 +14,11 @@ STOPWORDS = {
     "serviço", "sistema", "tecnologia", "plataforma", "software", "aplicativo", "programa", "cresol", "time", "ciências", "estamos", "garantir", "ações",
     "oportunidades", "responsável", "para", "você", "mais", "fazer", "nossos", "nosso", "rotinas", "rotina", "parte", "dados", "controle", "clientes",
     "todos", "contratos", "administrativo", "equipe", "aqui", "sobre", "também", "apoio", "cada", "sempre", "setor", "indicadores", "bem-estar", 
-    "financeiro", "meio", "contas", "administrativas", "segurança", "valores", "todas", "formas",  "análise", "relacionadas",
-    "demandas", "crescimento", "ferramentas", "acesso", "plano", "profissionais", "relacionados", "como"
+    "meio", "contas", "administrativas", "segurança", "valores", "todas", "formas",  "análise", "relacionadas", "pela", "pelo", "e/ou", "está"
+    "demandas", "crescimento", "ferramentas", "acesso", "plano", "profissionais", "relacionados", "como", "nossa", "pessoas", "pessoa", "suas", "seus",
+    "seu", "sua", "isso", "essa", "esse", "essas", "esses", "nessa", "nesse", "nesses", "nessas", "forma", "plano", "saúde", "diversas", "formação",
+    "junto", "pode", "através", "somos", 
+
 }
 
 
