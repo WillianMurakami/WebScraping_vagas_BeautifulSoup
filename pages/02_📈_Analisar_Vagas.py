@@ -84,21 +84,11 @@ else:
         fig_publicacao = px.line(publicacao_counts, x='Data', y='Número de Vagas', title='Vagas por Data de Publicação')
         st.plotly_chart(fig_publicacao)
 
-    # Gráfico de Barras: Vagas por Empresas
-    empresa_counts = df_filtered['careerPageName'].value_counts()
-    demais_empresas = empresa_counts.iloc[15:].sum()  # Soma das empresas restantes
-    top_empresas = pd.concat([empresa_counts.nlargest(15), pd.Series({"Demais": demais_empresas})])
-    empresa_fig = px.bar(
-        top_empresas.sort_values(ascending=False), y=top_empresas.index, x=top_empresas.values,
-        orientation='h', title="Vagas por Empresas"
-    )
-    st.plotly_chart(empresa_fig)
-
     # Linha 3: Gráficos de Contratação e Localização
-    col5, col6 = st.columns(2)
+    col4, col5 = st.columns(2)
 
     # Gráfico de Pizza: Tipos de Contratação
-    with col5:
+    with col4:
         df_filtered['Modalidade Traduzida'] = df_filtered['type'].apply(lambda x: x.split('_')[-1]).map({
             'effective': 'Efetivo',
             'entity': 'Pessoa Jurídica',
@@ -112,7 +102,7 @@ else:
         st.plotly_chart(pie_fig)
 
     # Gráfico de Sunburst: Estado e Cidade
-    with col6:
+    with col5:
         df_filtered['Estado'] = df_filtered.apply(
             lambda row: 'Remoto' if row.get('isRemoteWork') else row.get('state', 'Desconhecido'), axis=1
         )
@@ -123,6 +113,18 @@ else:
         sunburst_fig = px.sunburst(sunburst_count, path=['Estado', 'Cidade'], values='Número de Vagas', 
                                    title="Distribuição de Vagas por Estado e Cidade")
         st.plotly_chart(sunburst_fig)
+
+    # Gráfico de Barras: Vagas por Empresas
+    empresa_counts = df_filtered['careerPageName'].value_counts()
+    demais_empresas = empresa_counts.iloc[15:].sum()  # Soma das empresas restantes
+    top_empresas = pd.concat([empresa_counts.nlargest(15), pd.Series({"Demais": demais_empresas})])
+    empresa_fig = px.bar(
+        top_empresas.sort_values(ascending=False), y=top_empresas.index, x=top_empresas.values,
+        orientation='h', title="Vagas por Empresas"
+    )
+    st.plotly_chart(empresa_fig)
+
+
 
     # Treemap de Palavras Relevantes
     if 'description' in df_filtered.columns:
