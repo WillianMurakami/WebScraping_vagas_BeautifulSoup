@@ -6,6 +6,7 @@ import plotly.express as px
 import numpy as np
 import os
 
+
 # Define o caminho para o modelo local do spaCy
 model_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "models", "pt_core_news_sm")
 
