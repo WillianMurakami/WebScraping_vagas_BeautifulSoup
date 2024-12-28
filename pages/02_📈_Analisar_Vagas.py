@@ -3,10 +3,9 @@ import pandas as pd
 from collections import Counter
 import plotly.express as px
 
-# Stopwords básicas para filtrar palavras irrelevantes
+# Stopwords básicas
 STOPWORDS = {"vaga", "trabalho", "empresa", "projeto", "experiência", "responsável"}
 
-# Função para extrair palavras-chave das descrições
 def extract_terms(text, stopwords):
     """
     Extrai palavras-chave de um texto, removendo stopwords.
@@ -14,15 +13,6 @@ def extract_terms(text, stopwords):
     words = text.lower().split()
     keywords = [word.strip(",.") for word in words if word not in stopwords and len(word) > 3]
     return Counter(keywords)
-
-# Função para calcular tempo médio de fechamento
-def calculate_days_between(dates1, dates2):
-    """
-    Calcula a diferença de dias entre duas listas de datas.
-    """
-    days = [(pd.Timestamp(d2) - pd.Timestamp(d1)).days if pd.notnull(d1) and pd.notnull(d2) else None 
-            for d1, d2 in zip(dates1, dates2)]
-    return days
 
 # Verifica se há dados de vagas
 if 'job_data' not in st.session_state or st.session_state.job_data.empty:
@@ -39,9 +29,7 @@ else:
 
     # Adiciona dias de fechamento, se possível
     if 'Data de Candidatura' in df_vagas.columns:
-        df_vagas['Tempo de Fechamento'] = calculate_days_between(
-            df_vagas['Data de Publicação'], df_vagas['Data de Candidatura']
-        )
+        df_vagas['Tempo de Fechamento'] = (df_vagas['Data de Candidatura'] - df_vagas['Data de Publicação']).dt.days
 
     # Calcula métricas gerais
     total_vagas = len(df_vagas)
@@ -78,38 +66,7 @@ else:
         fig_publicacao = px.line(publicacao_counts, x='Data', y='Número de Vagas', title='Vagas por Data de Publicação')
         st.plotly_chart(fig_publicacao)
 
-    # Linha 2: Gráficos de Modalidade e Localização
-    col4, col5 = st.columns(2)
-
-    # Gráfico de Sunburst: Estado e Cidade
-    with col4:
-        df_filtered['Estado'] = df_filtered.apply(
-            lambda row: 'Remoto' if row.get('isRemoteWork') else row.get('state', 'Desconhecido'), axis=1
-        )
-        df_filtered['Cidade'] = df_filtered.apply(
-            lambda row: 'Remoto' if row.get('isRemoteWork') else row.get('city', 'Desconhecida'), axis=1
-        )
-        sunburst_count = df_filtered.groupby(['Estado', 'Cidade']).size().reset_index(name='Número de Vagas')
-        sunburst_fig = px.sunburst(sunburst_count, path=['Estado', 'Cidade'], values='Número de Vagas', 
-                                   title="Distribuição de Vagas por Estado e Cidade")
-        st.plotly_chart(sunburst_fig)
-
-    # Gráfico de Treemap: Modalidade de Contratação
-    with col5:
-        if 'type' in df_filtered.columns:
-            df_filtered['Modalidade Traduzida'] = df_filtered['type'].apply(lambda x: x.split('_')[-1]).map({
-                'effective': 'Efetivo',
-                'legal': 'Pessoa Jurídica',
-                'temporary': 'Temporário'
-            })
-            modalidade_counts = df_filtered['Modalidade Traduzida'].value_counts()
-            treemap_fig = px.treemap(
-                modalidade_counts.reset_index(), path=['index'], values='Modalidade Traduzida',
-                title="Modalidade de Contratação"
-            )
-            st.plotly_chart(treemap_fig)
-
-    # Linha 3: Gráfico de Barras: Vagas por Empresa
+    # Gráfico de Barras: Vagas por Empresa
     empresa_counts = df_filtered['careerPageName'].value_counts().nlargest(15)
     empresa_fig = px.bar(
         empresa_counts.sort_values(ascending=False), y=empresa_counts.index, x=empresa_counts.values,
@@ -117,7 +74,7 @@ else:
     )
     st.plotly_chart(empresa_fig)
 
-    # Linha 4: Análise de Texto com Nuvem de Palavras (Habilidades e Ferramentas)
+    # Treemap das Palavras Mais Frequentes
     if 'description' in df_filtered.columns:
         all_descriptions = " ".join(df_filtered['description'].dropna())
         terms = extract_terms(all_descriptions, STOPWORDS)
