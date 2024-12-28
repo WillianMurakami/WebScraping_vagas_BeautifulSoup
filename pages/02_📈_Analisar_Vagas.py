@@ -100,7 +100,10 @@ else:
     with col5:
         df_filtered['Modalidade Traduzida'] = df_filtered['type'].apply(lambda x: x.split('_')[-1]).map({
             'effective': 'Efetivo',
-            'legal': 'Pessoa Jurídica',
+            'entity': 'Pessoa Jurídica',
+            'pool': 'Banco de talentos',
+            'associate': "Associado",
+            'autonomous': "Autônomo",
             'temporary': 'Temporário'
         })
         modalidade_counts = df_filtered['Modalidade Traduzida'].value_counts()
