@@ -17,7 +17,8 @@ STOPWORDS = {
     "meio", "contas", "administrativas", "segurança", "valores", "todas", "formas",  "análise", "relacionadas", "pela", "pelo", "e/ou", "está"
     "demandas", "crescimento", "ferramentas", "acesso", "plano", "profissionais", "relacionados", "como", "nossa", "pessoas", "pessoa", "suas", "seus",
     "seu", "sua", "isso", "essa", "esse", "essas", "esses", "nessa", "nesse", "nesses", "nessas", "forma", "plano", "saúde", "diversas", "formação",
-    "junto", "pode", "através", "somos", "quando", "quanto", "temos", "velha", "buscamos", "conforme", "está", "entre", "conhecimentos"
+    "junto", "pode", "através", "somos", "quando", "quanto", "temos", "velha", "buscamos", "conforme", "está", "entre", "conhecimentos", "ensino",
+    "venha", "seja", "nossas", "grupo",  
 
 }
 
