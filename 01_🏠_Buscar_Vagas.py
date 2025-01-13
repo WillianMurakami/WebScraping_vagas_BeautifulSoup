@@ -36,7 +36,7 @@ st.set_page_config(page_title="Busca de Vagas", layout="wide")
 # Cabeçalho e introdução ao dashboard
 st.title("📊 Dashboard de Vagas de Emprego")
 st.markdown("""
-    Esse projeto visa auxilar na análise e pesquisa de vagas utilziando o portal Gupy, use essa página para pesquisar e extração dos dados do poral (utilizando webscraping) a vaga de interesse (*também é possível visualizar os resultados e fazer download da tabela em formato CSV*). 
+    Esse projeto visa auxilar na pesquisa de vagas utilziando o portal Gupy e posterior análise dessas vagas, use essa página para pesquisar e extração dos dados do poral (utilizando webscraping) a vaga de interesse (*também é possível visualizar os resultados e fazer download da tabela em formato CSV*). 
     Utilize a barra lateral para acessar os resultados e ver mais detalhes.
 """)
 
